@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<title>Blog</title>
+	<!-- bootstrap -->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- medium style editor -->
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.2/js/medium-editor.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.2/css/medium-editor.min.css">
+
+	<!-- awecome icons -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+
+	<!-- custom css -->
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style_conductor.css'%}">
+
+	<!-- fonts -->
+
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
+
+
+</head>
+<body>
+	<!-- navbar -->
+
+	<nav class="navbar navbar-default custom-navbar techfont">
+		<div class="container">
+			<a class="navbar-brand bigbrand" href="{% url 'alquilar_auto' %}">Issy Car</a>
+			<button data-toggle="collapse" class="navbar-toggle" data-target=".navHeaderCollapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+
+			</button>
+			<div class="collapse navbar-collapse navHeaderCollapse">
+
+				<ul class="nav navbar-nav navbar-right navHeaderCollapse">
+					
+					<li><a href="#">Mi perfil</a></li>
+					<li><a href="#">buscar Auto</a></li>
+					<li><a href="#">Buscar Conductor</a></li>
+					<li><a href="#">Mis autos</a></li>
+
+					{% if user.is_authenticated %}
+					<li><a href="{% url 'logout'%}">Salir</a></li>
+					{% else %}
+					<li><a class="nav navbar-right" href="{% url 'login'%}"><span class="glyphicon glyphicon-user"></span></a></li>
+					{% endif%}
+
+				</ul>
+			</div>
+		</div>
+		
+	</nav>
+
+	<!-- content block -->
+	<div class="content container">
+		<div class="row">
+			<div class="col-md-8">
+				<div>
+					{% block content%}
+					{% endblock %}
+				</div>
+			</div>
+			<div class="">
+				
+			</div>
+		</div>
+	</div>
+	<script
+	src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
