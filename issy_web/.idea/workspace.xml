@@ -69,8 +69,8 @@
       <file leaf-file-name="style_conductor.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/conductor/static/css/style_conductor.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="54">
+              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -102,9 +102,9 @@
         <option value="$PROJECT_DIR$/conductor/models.py" />
         <option value="$PROJECT_DIR$/conductor/views.py" />
         <option value="$PROJECT_DIR$/conductor/urls.py" />
-        <option value="$PROJECT_DIR$/conductor/static/css/style_conductor.css" />
         <option value="$PROJECT_DIR$/conductor/templates/conductor/alquilar_auto.html" />
         <option value="$PROJECT_DIR$/conductor/templates/conductor/conductor_info.html" />
+        <option value="$PROJECT_DIR$/conductor/static/css/style_conductor.css" />
       </list>
     </option>
   </component>
@@ -617,8 +617,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/conductor/static/css/style_conductor.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        <state relative-caret-position="54">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
