@@ -6,7 +6,7 @@
 	<div class="jumbotron">
 
 		<h1>Alquiler de <i class="fa fa-car" aria-hidden="true"></i>
-		En el Peru</span></h1>
+		En el Peru</h1>
 
 		<form method="post" action ="{% url 'lista_autos' %}" >
 			{% csrf_token %} 
@@ -71,7 +71,11 @@
 		{% for acc in access_records %}
 		<div class="row">
 			<div class="col-md-4">
+<<<<<<< HEAD
 				<a href="{% url 'info_auto' pk=acc.pk%}"><img src="{% static 'img/car.jpg' %}" class="img-thumbnail"></a>
+=======
+				<a href="info_auto"><img src="{% static 'img/car.jpg' %}" class="img-thumbnail"></a>
+>>>>>>> d850926c8883c3f9bd8f17e88abea0ab7786cb3a
 			</div>
 			<div class="col-md-4">
 				<h2>{{acc.modelo}}</h2>
