@@ -1,3 +1,7 @@
+
+.checked {
+    color: orange;
+
 #id_1{
 	padding-top: 40px;
 	padding-left: 100px;
@@ -18,4 +22,5 @@
 }
 #reco{
 	padding-left: 130px;
+
 }

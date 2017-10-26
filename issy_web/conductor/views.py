@@ -37,3 +37,6 @@ def alquilar_auto_lista(request):
 
 	print (Webpage_list)
 	return render(request,'conductor/alquilar_auto.html',context=date_dict)
+
+class ConductorInfo(TemplateView):
+	template_name = 'conductor/conductor_info.html'
