@@ -1,4 +1,8 @@
 
+#contain{
+	border: 5px solid powderblue;
+
+
 .checked {
     color: orange;
 
@@ -22,5 +26,6 @@
 }
 #reco{
 	padding-left: 130px;
+
 
 }

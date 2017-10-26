@@ -13,8 +13,13 @@ from conductor.models import Auto
 
 class AlquilarAuto(TemplateView):
 	template_name= 'conductor/alquilar_auto.html'
+
+class HomeConductor(TemplateView):
+	template_name= 'conductor/home_conductor.html'
+
 class InfoAuto(TemplateView):
 	template_name= 'conductor/info_auto.html'
+
 
 def alquilar_auto_lista(request):
 	'''
