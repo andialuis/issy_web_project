@@ -43,7 +43,6 @@ def alquilar_auto_lista(request):
 	print (Webpage_list)
 	return render(request,'conductor/alquilar_auto.html',context=date_dict)
 
-<<<<<<< HEAD
 def info_auto(request,pk):
 	auto = get_object_or_404(Auto,pk=pk)
 	Webpage_list = Auto.objects.get(pk=pk)
@@ -52,7 +51,7 @@ def info_auto(request,pk):
 	#print(Webpage_list.precio)
 	#form = CommentForm()
 	return render(request,'conductor/alquilar_auto.html',{'info_auto':Webpage_list})
-=======
+
 class ConductorInfo(TemplateView):
 	template_name = 'conductor/conductor_info.html'
->>>>>>> d850926c8883c3f9bd8f17e88abea0ab7786cb3a
+
