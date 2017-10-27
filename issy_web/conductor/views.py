@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404,redirect
 
 #necesario para restricciones en logeo
 from django.contrib.auth.decorators import login_required
@@ -13,8 +13,13 @@ from conductor.models import Auto
 
 class AlquilarAuto(TemplateView):
 	template_name= 'conductor/alquilar_auto.html'
+
+class HomeConductor(TemplateView):
+	template_name= 'conductor/home_conductor.html'
+
 class InfoAuto(TemplateView):
 	template_name= 'conductor/info_auto.html'
+
 
 def alquilar_auto_lista(request):
 	'''
@@ -38,5 +43,15 @@ def alquilar_auto_lista(request):
 	print (Webpage_list)
 	return render(request,'conductor/alquilar_auto.html',context=date_dict)
 
+def info_auto(request,pk):
+	auto = get_object_or_404(Auto,pk=pk)
+	Webpage_list = Auto.objects.get(pk=pk)
+
+
+	#print(Webpage_list.precio)
+	#form = CommentForm()
+	return render(request,'conductor/alquilar_auto.html',{'info_auto':Webpage_list})
+
 class ConductorInfo(TemplateView):
 	template_name = 'conductor/conductor_info.html'
+

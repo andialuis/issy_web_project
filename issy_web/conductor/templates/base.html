@@ -42,7 +42,7 @@
 					<li><a href="#">Mi perfil</a></li>
 					<li><a href="#">buscar Auto</a></li>
 					<li><a href="#">Buscar Conductor</a></li>
-					<li><a href="#">Mis autos</a></li>
+					<li><a href="{% url 'home_conductor'%}">Mis autos</a></li>
 
 					{% if user.is_authenticated %}
 					<li><a href="{% url 'logout'%}">Salir</a></li>
