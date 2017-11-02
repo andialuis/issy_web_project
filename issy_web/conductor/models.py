@@ -11,8 +11,8 @@ class Auto(models.Model):
 	precio= models.FloatField()
 	jornada= models.IntegerField()
 	is_alquiled= models.BooleanField()
-	def __str__(self):
-		return self.modelo
+	#def __str__(self):
+	#	return self.modelo
 
 class Conductor(models.Model):
 	nombre = models.CharField(max_length=264)
