@@ -17,6 +17,9 @@ class AlquilarAuto(TemplateView):
 class HomeConductor(TemplateView):
 	template_name= 'conductor/home_conductor.html'
 
+class HomeDuenho(TemplateView):
+	template_name= 'duenho/home_duenho.html'
+
 class InfoAuto(TemplateView):
 	template_name= 'conductor/info_auto.html'
 
