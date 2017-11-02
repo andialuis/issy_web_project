@@ -55,8 +55,14 @@ def info_auto(request,pk):
 class ConductorInfo(TemplateView):
 	template_name = 'conductor/conductor_info.html'
 
+
 class ConductorCreate(CreateView):
 	model = Conductor
 	form_class = ConductorForm
 	template_name = 'registration/registro_conductor.html'
 	success_url = reverse_lazy('home_conductor')
+
+class Index(TemplateView):
+	template_name = 'main.html'
+
+
