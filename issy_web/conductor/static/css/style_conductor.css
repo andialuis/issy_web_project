@@ -1,10 +1,9 @@
-
 #contain{
 	border: 5px solid powderblue;
 
-
 .checked {
     color: orange;
+}
 
 #id_1{
 	padding-top: 40px;
@@ -26,6 +25,5 @@
 }
 #reco{
 	padding-left: 130px;
-
 
 }
