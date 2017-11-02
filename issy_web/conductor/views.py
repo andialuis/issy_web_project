@@ -1,15 +1,15 @@
 from django.shortcuts import render,get_object_or_404,redirect
-
+from django.urls import reverse_lazy
 #necesario para restricciones en logeo
 from django.contrib.auth.decorators import login_required
 
 #necesario para trabajar con plantillas(CRUD)
 from django.views.generic import (TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView)
 
-from . import forms
-from conductor.models import Auto
-# Create your views here.
+from .forms import ConductorForm
+from conductor.models import Auto,Conductor
 
+# Create your views here.
 
 class AlquilarAuto(TemplateView):
 	template_name= 'conductor/alquilar_auto.html'
@@ -55,6 +55,14 @@ def info_auto(request,pk):
 class ConductorInfo(TemplateView):
 	template_name = 'conductor/conductor_info.html'
 
+
+class ConductorCreate(CreateView):
+	model = Conductor
+	form_class = ConductorForm
+	template_name = 'registration/registro_conductor.html'
+	success_url = reverse_lazy('home_conductor')
+
 class Index(TemplateView):
 	template_name = 'main.html'
+
 
