@@ -55,3 +55,6 @@ def info_auto(request,pk):
 class ConductorInfo(TemplateView):
 	template_name = 'conductor/conductor_info.html'
 
+class Index(TemplateView):
+	template_name = 'main.html'
+

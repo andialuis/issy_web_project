@@ -1,4 +1,4 @@
-{% extends "../base.html"%}
+{% extends "../main.html"%}
 {% load staticfiles %}
 {% block content %}
 
@@ -42,7 +42,7 @@
 							<input type="number" class="form-control" id="IdPrecio" name="precio" placeholder="precio" pattern="^\d+(?:\.\d{1,2})?$" step="0.01" >
 						</div>
 						<div class="form-group col-md-12">
-				
+
 						</div>
 					</div>
 				</div>
@@ -71,11 +71,9 @@
 		{% for acc in access_records %}
 		<div class="row">
 			<div class="col-md-4">
-<<<<<<< HEAD
-				<a href="{% url 'info_auto' pk=acc.pk%}"><img src="{% static 'img/car.jpg' %}" class="img-thumbnail"></a>
-=======
-				<a href="info_auto"><img src="{% static 'img/car.jpg' %}" class="img-thumbnail"></a>
->>>>>>> d850926c8883c3f9bd8f17e88abea0ab7786cb3a
+
+				<a href="{% url 'info_auto' %}"><img src="{% static 'img/car.jpg' %}" class="img-thumbnail"></a>
+
 			</div>
 			<div class="col-md-4">
 				<h2>{{acc.modelo}}</h2>
@@ -89,9 +87,27 @@
 				<h1>S/.{{acc.precio}}</h1>
 			</div>
 		</div>
-		{% endfor %}
-	</section>
-	{% endif %}
+				<div class="row">
+			<div class="col-md-4">
+
+				<a href="{% url 'info_auto' %}"><img src="{% static 'img/car.jpg' %}" class="img-thumbnail"></a>
+
+			</div>
+			<div class="col-md-4">
+				<h2>Yaris</h2>
+				<p><strong>plazas: </strong>{{acc.plazas}}</p>
+				<p><strong>Aire Acondicionado: </strong>{{acc.aire_acondicionado}}</p>
+				<p><strong>Tipo Transmision: </strong>{{acc.tipo_transmision}}</p>
+				<p><strong>Lugar Recogida: </strong>{{acc.lugar_recodiga}}</p>
+			</div>
+			<div class="col-md-4">
+				<h2> Precio por jornada de {{acc.jornada}} horas</h2>
+				<h1>S/.45</h1>
+			</div>
+	</div>
+	{% endfor %}
+</section>
+{% endif %}
 </div>
 
 {% endblock%}
