@@ -22,6 +22,8 @@ class HomeDuenho(TemplateView):
 
 class InfoAuto(TemplateView):
 	template_name= 'conductor/info_auto.html'
+class HistoConductor(TemplateView):
+	template_name= 'conductor/historial_conductor.html'
 
 
 def alquilar_auto_lista(request):

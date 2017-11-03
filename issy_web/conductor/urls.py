@@ -13,5 +13,5 @@ url(r'^conductor/conductor_info$',views.ConductorInfo.as_view(),name="conductor_
 url(r'^conductor/info_auto$',views.InfoAuto.as_view(),name="info_auto"),
 url(r'^$',views.Index.as_view(),name="index"),
 url(r'^auto/(?P<pk>\d+)/detalle/$',views.info_auto,name="info_auto"),
-
+url(r'^conductor/historial_conductor$',views.HistoConductor.as_view(),name="historial_conductor"),
 ]
