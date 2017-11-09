@@ -1,5 +1,6 @@
 from django.db import models
 from issy_web.constants import ESTADO_CIVIL
+from django.core.validators import MaxValueValidator, MinValueValidator
 import datetime
 # Create your models here.
 
@@ -31,4 +32,12 @@ class Conductor(models.Model):
 	correo = models.CharField(max_length=50,blank=False,null=False)
 	telefono = models.IntegerField(blank=False,null=False)
 	def __str__(self):
-		return self.name
+		return (self.nombre+" "+self.apellido)
+
+class Resenha(models.Model):
+    emisor = models.CharField(max_length=264,blank=False,null=False)
+    receptor = models.ForeignKey(Conductor,blank=False,null=False,on_delete=models.CASCADE,)
+    estrellas = models.IntegerField(blank=False,null=False,
+                                    validators=[MaxValueValidator(5),MinValueValidator(1)])
+    comentario = models.TextField(blank=False,null=False)
+    fecha = models.DateField(default=datetime.date.today,blank=False,null=False)

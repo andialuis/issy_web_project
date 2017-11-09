@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import (TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView)
 
 from .forms import ConductorForm
-from conductor.models import Auto,Conductor
+from conductor.models import Auto,Conductor, Resenha
+from issy_web.constants import ESTADO_CIVIL
 
 # Create your views here.
 
@@ -22,6 +23,7 @@ class HomeDuenho(TemplateView):
 
 class InfoAuto(TemplateView):
 	template_name= 'conductor/info_auto.html'
+
 class HistoConductor(TemplateView):
 	template_name= 'conductor/historial_conductor.html'
 
@@ -57,8 +59,10 @@ def info_auto(request,pk):
 	#form = CommentForm()
 	return render(request,'conductor/alquilar_auto.html',{'info_auto':Webpage_list})
 
-class ConductorInfo(TemplateView):
-	template_name = 'conductor/conductor_info.html'
+class ConductorInfo(ListView):
+    model = Conductor
+    Resenha.objects.all()
+    template_name = 'conductor/conductor_info.html'
 
 
 class ConductorCreate(CreateView):
