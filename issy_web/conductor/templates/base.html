@@ -50,8 +50,8 @@
 					
 
 					{% if user.is_authenticated %}
-					<li><a href="{% url 'conductor:conductor_info'%}">Mi perfil</a></li>
-					<li><a href="{% url 'conductor:home_conductor'%}">Mis autos</a></li>
+					<li><a href="{% url 'conductor:conductor_info' %}">Mi perfil</a></li>
+					<li><a href="{% url 'auto:auto_list'%}">Mis autos</a></li>
 					<li><a href="{% url 'conductor:buscar_autos' %}">Buscar Auto</a></li>
 					<li><a href="{% url 'accounts:logout'%}">Salir</a></li>
 					{% else %}
@@ -67,7 +67,8 @@
 
 	{% block content%}
 	{% endblock %}
-	<footer>
+
+	<footer class="navbar-bottom">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-xs-12">

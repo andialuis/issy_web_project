@@ -1,5 +1,10 @@
+html{
+min-height: 100% !important;
+}
+
 body{
 	padding-top: 50px;
+	min-height: 100% !important;
 }
 .em-text{
 	color:#1cca98 !important;
@@ -75,11 +80,20 @@ section#title-bar{
 section#title-bar h1{
 	margin-bottom: 20px;
 }
+.micontenido{
+	
+	height:  auto !important;
+	min-height: 100% !important;
+	margin-bottom: 8em;
+
+}
 
 footer{
+
 	background: #333;
 	color: #fff;
 	padding: 30px 0 20px 0;
+
 }
 
 footer li{

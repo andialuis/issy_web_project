@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'conductor',
     'accounts',
     'bootstrap3',
+    'auto',
 ]
 
 MIDDLEWARE = [

@@ -8,7 +8,8 @@ from django.views.generic import (TemplateView,ListView,DetailView,CreateView,Up
 from braces.views import SelectRelatedMixin
 from django.views import generic
 from .forms import ConductorForm
-from conductor.models import Auto,Conductor
+from conductor.models import Conductor
+from auto.models import Auto
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.contrib.auth import get_user_model
@@ -62,7 +63,7 @@ def info_auto(request,pk):
 	#print(Webpage_list.precio)
 	#form = CommentForm()
 	return render(request,'conductor/info_auto.html',{'info_auto':Webpage_list})
-
+ 
 '''class ConductorInfo2(request,user):
 	Webpage_list = Conductor.objects.order_by('precio')
 	template_name = 'conductor/conductor_info.html'
@@ -76,18 +77,19 @@ class CreateProfileConductor(LoginRequiredMixin,CreateView):
 
 def ConductorInfo(request):
 	print(request.user.username)
-	consulta = Conductor.objects.filter(user=request.user)
+	#~onsulta = Conductor.objects.get(user=request.user)
 
-	print(len(consulta))
+	try:
+		consulta = Conductor.objects.get(user=request.user)
+	except Conductor.DoesNotExist:
+		consulta =None
+	print(consulta)
+
 	#print(consulta.precio)
 	#form = CommentForm()
 	return render(request,'conductor/conductor_info.html',{'conductor':consulta})
 
 
-#lanza plantilla   nombre_modelo_form
-#class CreateProfileConductor(LoginRequiredMixin, generic.CreateView):
-#    fields = ("name", "description")
-#    model = Group
 
 
 class ConductorCreate(CreateView):
@@ -106,6 +108,11 @@ class ConductorProfileCreate(LoginRequiredMixin,CreateView):
 	model = Conductor
 	redirect_field_name = "conductor/conductor_info.html"
 
+	def form_valid(self, form):
+		self.object = form.save(commit=False)
+		self.object.user = self.request.user
+		self.object.save()
+		return super().form_valid(form)
 
 
 

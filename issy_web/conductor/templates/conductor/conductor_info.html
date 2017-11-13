@@ -11,7 +11,7 @@
                 <div class="row">
                     {% if user.is_authenticated %}
                     {% if conductor %}
-                    <a class="btn btn-primary" href="{% url 'conductor:perfil_edit' pk=user.pk %}">
+                    <a class="btn btn-primary" href="{% url 'conductor:perfil_edit' pk=user.conductor.id %}">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </a>
                     {% else%}
@@ -22,7 +22,7 @@
                     {% endif%}
                 </div>
                 <div class = "row">
-                    <h1>Juan Perez</h1>
+                    <h1>{{conductor.nombre}} {{conductor.apellido}}</h1>
 
                 </div>
                 <div class = "row">
@@ -34,13 +34,13 @@
 
                 <div class = "row">
                     <div class="col-md-4">
-                      <p><strong>Edad:</strong>25</p>
+                      <p><strong>Edad:</strong>{{conductor.edad}}</p>
                   </div>
                   <div class="col-md-4">
-                      <p><strong>Estado civil:</strong>Soltero</p>
+                      <p><strong>Estado civil:</strong>{{conductor.estado_civil}}</p>
                   </div>
                   <div class="col-md-4">
-                      <p><strong>Ciudad:</strong>Tacna</p>
+                      <p><strong>Ciudad:</strong>{{conductor.ciudad}}</p>
                   </div>
 
 
@@ -50,13 +50,13 @@
       <div class="row">
         <div class="col-md-6">
             <h2>Experiencia</h2>
-            <p><strong>Inicio en la app:</strong>12/12/2012</p>
-            <p><strong>Número de viajes:</strong>20</p>
+            <p><strong>Inicio en la app:</strong>{{conductor.inicio_app}}</p>
+            <p><strong>Número de viajes:</strong>{{conductor.total_viajes}}</p>
         </div>
         <div class="cold-md-6">
             <h2>Licencia</h2>
-            <p><strong>Tipo:</strong>A1</p>
-            <p><strong>Fecha de vencimiento:</strong>12/12/2020</p>
+            <p><strong>Tipo:</strong>{{conductor.tipo_licencia}}</p>
+            <p><strong>Fecha de vencimiento:</strong>{{conductor.vencimiento_licencia}}</p>
         </div>
     </div>
     <hr>
