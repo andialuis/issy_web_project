@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-{% load staticfiles %}
+{% load staticfiles%}
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<!-- The above 3 meta tags must come first in the head; any other head content must come *after* these tags -->
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<link rel="icon" href="../../favicon.ico">
 	<title>IssyCar: Alquiler y contactos de conductores</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/styles.css" >
-
+	
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.2/js/medium-editor.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.2/css/medium-editor.min.css">
@@ -22,11 +21,10 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
 
 
+	
 
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style_conductor.css'%}">
-
-	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css'%}">
-
+	<link rel="stylesheet" type="text/css" href="{% static 'css/estilos_general.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style_conductor.css'%}">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -45,19 +43,22 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand em-text" href="{% url 'alquilar_auto' %}">Issy Car</a>
+				<a class="navbar-brand em-text" href="{% url 'conductor:buscar_autos' %}">Issy Car</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="{% url 'conductor_info' %}">Mi perfil</a></li>
-					<li><a href="/">buscar Auto</a></li>
-					<li><a href="{% url 'alquilar_auto' %}">Buscar Conductor</a></li>
-					<li><a href="{% url 'home_conductor'%}">Mis autos</a></li>
+					
 
 					{% if user.is_authenticated %}
-					<li><a href="{% url 'logout'%}">Salir</a></li>
+					<li><a href="{% url 'conductor:conductor_info'%}">Mi perfil</a></li>
+					<li><a href="{% url 'conductor:home_conductor'%}">Mis autos</a></li>
+					<li><a href="{% url 'conductor:buscar_autos' %}">Buscar Auto</a></li>
+					<li><a href="{% url 'accounts:logout'%}">Salir</a></li>
 					{% else %}
-					<li><a class="nav navbar-right" href="{% url 'login'%}"><span class="glyphicon glyphicon-user"></span></a></li>
+					<li><a href="/">buscar Auto</a></li>
+					<li><a href="{% url 'conductor:buscar_autos' %}">Buscar Auto</a></li>
+					<li><a href="{% url 'accounts:signup' %}" class="btn btn-simple">Sign up</a></li>
+					<li><a href="{% url 'accounts:login' %}" class="btn btn-simple">Log in</a></li>
 					{% endif%}
 				</ul>
 			</div><!--/.nav-collapse -->
