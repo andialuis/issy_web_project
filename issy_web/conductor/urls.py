@@ -12,9 +12,8 @@ url(r'^conductor/registro_conductor$',views.ConductorCreate.as_view(),name = "re
 url(r'^conductor_info/$',views.ConductorInfo,name="conductor_info"),
 url(r'^perfil/(?P<pk>\d+)/edit/$',views.ConductorUpdate.as_view(),name="perfil_edit"),
 url(r'^perfil/new/$',views.ConductorProfileCreate.as_view(),name="perfil_crear"),
-url(r'^info_auto',views.InfoAuto.as_view(),name="info_auto"),
 url(r'^$',views.Index.as_view(),name="index"),
-url(r'^auto/(?P<pk>\d+)/detalle/$',views.info_auto,name="info_auto2"),
+url(r'^info_auto/(?P<pk>\d+)/detalle/$',views.info_auto_detalle,name="info_auto_detalle"),
 url(r'^conductor/historial_conductor$',views.HistoConductor.as_view(),name="historial_conductor"),
 
 ]

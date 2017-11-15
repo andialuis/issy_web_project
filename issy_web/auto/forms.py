@@ -6,7 +6,7 @@ from .models import Auto
 class AutoForm(forms.ModelForm):
 	class Meta():
 		model = Auto
-		exclude = ('user',)
+		exclude = ('user','is_alquiled')
 		fields ="__all__"
 
 

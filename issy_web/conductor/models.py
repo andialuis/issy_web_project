@@ -23,7 +23,6 @@ class Conductor(models.Model):
 	total_viajes = models.IntegerField(default=0,blank=False,null=False)
 	tipo_licencia = models.CharField(max_length=8,blank=False,null=False)
 	vencimiento_licencia = models.DateField(blank=False,null=False)
-	correo = models.CharField(max_length=50,blank=False,null=False)
 	telefono = models.IntegerField(blank=False,null=False)
 	def __str__(self):
 		return self.nombre

@@ -4,7 +4,12 @@ from django.core.urlresolvers import reverse
 
 User = get_user_model()
 
+HIRED_STATUS=(
+    ('1', 'espera'),
+    ('2', 'aceptado'),
+    ('3', 'finalizado'),
 
+)
 
 # Create your models here.
 
@@ -14,7 +19,7 @@ class Auto(models.Model):
 	plazas= models.CharField(max_length=264)
 	aire_acondicionado= models.CharField(max_length=264)
 	tipo_transmision= models.CharField(max_length=264)
-	lugar_recodiga= models.CharField(max_length=264)
+	lugar_recogida= models.CharField(max_length=264)
 	precio= models.FloatField()
 	jornada= models.IntegerField()
 	is_alquiled= models.BooleanField()
@@ -24,4 +29,10 @@ class Auto(models.Model):
 	def get_absolute_url(self):
 		return reverse("auto:auto_list")
 
-	
+
+
+class Contrato(models.Model):
+	User_alquila=models.ForeignKey("auth.User",null=True,related_name="user_alquila")
+	User_contrata=models.ForeignKey("auth.User",null=True,related_name="user_contrata")
+	hired_status=models.CharField(max_length = 1, choices = HIRED_STATUS, blank = False,
+	null = False, default = HIRED_STATUS[0])

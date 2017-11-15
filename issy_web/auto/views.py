@@ -7,15 +7,15 @@ from django.urls import  reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView)
-from .models import Auto
+from .models import Auto,Contrato
 # Create your views here.
 
 
 class AutoListView(ListView):
 	model = Auto
 
-	#def get_queryset(self):
-	#	return auto.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+	def get_queryset(self):
+		return Auto.objects.filter(user=self.request.user).order_by('-precio')
 
 
 
@@ -49,6 +49,35 @@ class AutoDeleteView(LoginRequiredMixin,DeleteView):
 	success_url = reverse_lazy("auto:auto_list")
 
 
+
+class AutoContratos(LoginRequiredMixin,ListView):
+	model= Contrato
+	def get_queryset(self):
+		return Contrato.objects.exclude(hired_status='3').filter()
+
+@login_required
+def AutoOfertar(request,pk):
+	p= Auto.objects.filter(pk=pk).update(is_alquiled=True)
+	print(p)
+	ofertas=Auto.objects.filter(is_alquiled=True,pk=pk)
+
+	return render(request,'auto/auto_list.html',{'ofertas':ofertas})
+
+
+@login_required
+def AutoOfertados(request):
+
+	ofertas=Auto.objects.filter(is_alquiled=True,user=request.user)
+
+	return render(request,'auto/auto_list.html',{'auto_list':ofertas})
+
+
+@login_required
+def AutoSinOfertar(request):
+
+	ofertas=Auto.objects.filter(is_alquiled=False,user=request.user)
+
+	return render(request,'auto/auto_list.html',{'auto_list':ofertas})
 
 
 
