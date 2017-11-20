@@ -27,16 +27,16 @@
 						<p><strong>plazas: </strong>{{info_auto_detalle.plazas}}</p>	
 					</div>
 					<div class="col-md-6">
-						<p>Tranmision {{info_auto_detalle.tipo_transmision}}</p>
+						<p><strong>Tranmision</strong> {{info_auto_detalle.tipo_transmision}}</p>
 					</div>
 					<div class="col-md-6">
 						<p><strong>Puertas: </strong>{{info_auto_detalle.puertas}}</p>
 					</div>
 					<div class="col-md-6">
-						<p>Aire acondicionado: {{info_auto_detalle.aire_acondicionado}}</p>
+						<p><strong>Aire acondicionado: </strong>{{info_auto_detalle.aire_acondicionado}}</p>
 					</div>
 					<div class="col-md-12">
-						<p>Locacion: {{info_auto_detalle.lugar_recogida}}</p>
+						<p><strong>Locacion:</strong> {{info_auto_detalle.lugar_recogida}}</p>
 					</div>
 				</div>
 			</div>
@@ -44,7 +44,8 @@
 			<div class="col-md-4">
 				<h1> Precio por jornada de {{info_auto_detalle.jornada}} horas</h1>
 				<h2>S/. {{info_auto_detalle.precio}}</h2>
-				<button type="submit" class="btn btn-primary center-block btn-lg"> Alquilar </button>
+				<a href="{% url 'auto:contratar' owner=info_auto_detalle.user auto=info_auto_detalle.pk %}" class="btn btn-primary btn-lg">Alquilar</a>
+
 			</div>
 		</div>
 		<div class="row">

@@ -8,3 +8,4 @@ from conductor.models import Conductor
 
 
 admin.site.register(Conductor)
+

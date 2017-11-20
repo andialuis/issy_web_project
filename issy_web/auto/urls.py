@@ -16,5 +16,11 @@ url(r'^(?P<pk>\d+)/ofertar/$',views.AutoOfertar,name="auto_ofertar"),
 url(r'^ofertados/$',views.AutoOfertados,name="auto_ofertados"),
 url(r'^sinofertar/$',views.AutoSinOfertar,name="auto_sin_ofertar"),
 url(r'^contratos/$',views.AutoContratos.as_view(),name="contratos"),
+url(r'^contratar/(?P<owner>\w+)/(?P<auto>\w+)$',views.AutoContratar,name="contratar"),
+url(r'^ofertas_hacia_mi/$',views.GetContratosForMe,name="ofertas_hacia_mi"),
+url(r'^ofertas_hacia_otros/$',views.GetContratosToOther,name="ofertas_hacia_otros"),
+url(r'^aceptar_contrato/(?P<pk>\d+)/$',views.AcceptContract,name="aceptar_contrato"),
+url(r'^finalizar_contrato/(?P<pk>\d+)/$',views.FinishContract,name="finalizar_contrato"),
+
 
 ]

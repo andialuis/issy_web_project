@@ -54,37 +54,47 @@
 					<li><a href="{% url 'auto:auto_list'%}">Mis autos</a></li>
 					<li><a href="{% url 'conductor:alquilar_auto' %}">Buscar Auto</a></li>
 					<li><a href="{% url 'auto:contratos' %}">Contratos</a></li>
-					<li><a href="{% url 'accounts:logout'%}">Salir</a></li>
-					{% else %}
-					<li><a href="{% url 'conductor:alquilar_auto' %}">Buscar Auto</a></li>
-					<li><a href="{% url 'accounts:signup' %}" class="btn btn-simple">Sign up</a></li>
-					<li><a href="{% url 'accounts:login' %}" class="btn btn-simple">Log in</a></li>
-					{% endif%}
 				</ul>
-			</div><!--/.nav-collapse -->
-		</div>
-	</nav>
-
-	{% block content%}
-	{% endblock %}
-
-	<footer class="navbar-bottom">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-xs-12">
-					<ul>
-						<li><a href="#">Home</a></li>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Contact</a></li>
-						<li><a href="#">Privacy Policy</a></li>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown active">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><strong>{{user.username}}</strong> <span class="caret"></span></a>
+					
+					<ul class="dropdown-menu">
+					<li><a href="{% url 'accounts:logout'%}">Salir</a></li>
 					</ul>
-				</div>
-				<div class="col-md-6 col-xs-12">
-					<p>Copyright &copy; 2017 All right reserved</p>
-				</div>
+				</ul>
+
+				{% else %}
+				<li><a href="{% url 'conductor:alquilar_auto' %}">Buscar Auto</a></li>
+				<li><a href="{% url 'accounts:signup' %}" class="btn btn-simple">Sign up</a></li>
+				<li><a href="{% url 'accounts:login' %}" class="btn btn-simple">Log in</a></li>
+			</ul>
+			{% endif%}
+
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+{% block content%}
+{% endblock %}
+
+<footer class="navbar-bottom">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-xs-12">
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a href="#">Privacy Policy</a></li>
+				</ul>
+			</div>
+			<div class="col-md-6 col-xs-12">
+				<p>Copyright &copy; 2017 All right reserved</p>
 			</div>
 		</div>
-	</footer>
+	</div>
+</footer>
       <!-- Bootstrap core JavaScript
       	================================================== -->
       	<!-- Placed at the end of the document so the pages load faster -->

@@ -7,7 +7,13 @@ from django.urls import  reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView)
+from django.views.decorators.http import require_http_methods
+from django.http import HttpResponse
 from .models import Auto,Contrato
+from django.contrib.auth import get_user_model
+from django.db import IntegrityError
+from django.db.models import Q
+User = get_user_model()
 # Create your views here.
 
 
@@ -52,8 +58,45 @@ class AutoDeleteView(LoginRequiredMixin,DeleteView):
 
 class AutoContratos(LoginRequiredMixin,ListView):
 	model= Contrato
-	def get_queryset(self):
-		return Contrato.objects.exclude(hired_status='3').filter()
+	template_name = 'auto/contrato_list.html'
+	def get_context_data(self):
+		mContrato= Contrato.objects.filter(Q(User_contrata=self.request.user)| Q(User_alquila=self.request.user))
+		dict_res={'contrato_list':mContrato,'is_for_me':False}
+		return dict_res
+
+@require_http_methods(["GET"])
+def GetContratosForMe(request):
+	mContrato= Contrato.objects.filter(User_alquila=request.user)
+	dict_res={'contrato_list':mContrato,'is_for_me':True}
+	return render(request,'auto/contrato_list.html',dict_res)
+
+@require_http_methods(["GET"])
+def GetContratosToOther(request):
+	mContrato= Contrato.objects.filter(User_contrata=request.user)
+	dict_res={'contrato_list':mContrato,'is_for_me':False}
+	return render(request,'auto/contrato_list.html',dict_res)
+
+@require_http_methods(["GET"])
+def AcceptContract(request,pk):
+	Contrato.objects.filter(pk=pk).update(hired_status='2')
+	mContrato= Contrato.objects.filter(User_contrata=request.user)
+	dict_res={'contrato_list':mContrato,'is_for_me':False}
+	return render(request,'auto/contrato_list.html',dict_res)
+
+@require_http_methods(["GET"])
+def FinishContract(request,pk):
+	Contrato.objects.filter(pk=pk).update(hired_status='3')
+	mContrato= Contrato.objects.filter(User_contrata=request.user)
+	dict_res={'contrato_list':mContrato,'is_for_me':False}
+	return render(request,'auto/contrato_list.html',dict_res)
+
+
+
+
+
+
+
+
 
 @login_required
 def AutoOfertar(request,pk):
@@ -80,5 +123,24 @@ def AutoSinOfertar(request):
 	return render(request,'auto/auto_list.html',{'auto_list':ofertas})
 
 
+@login_required
+@require_http_methods(["GET"])
+def AutoContratar(request,owner,auto):
+
+	print (owner)
+	print (auto)
+	owner = User.objects.get(username=owner)
+	print (owner)
+	Auto_status=Auto.objects.get(is_alquiled=False,user=owner,pk=auto)
+	if Auto_status == None:
+		return HttpResponse('auto already hired')
+	Auto.objects.filter(user=owner,pk=auto).update(is_alquiled=True)
+	contract = Contrato(User_alquila=owner,User_contrata=request.user,auto=Auto_status)
+	try:
+		contract.save()
+		return HttpResponse(contract)
+	except IntegrityError as e:
+		return HttpResponse('error reference key')
 
 
+	

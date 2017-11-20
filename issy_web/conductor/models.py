@@ -25,7 +25,7 @@ class Conductor(models.Model):
 	vencimiento_licencia = models.DateField(blank=False,null=False)
 	telefono = models.IntegerField(blank=False,null=False)
 	def __str__(self):
-		return self.nombre
+		return self
 
 	def get_absolute_url(self):
 		return reverse("conductor:conductor_info")

@@ -34,5 +34,8 @@ class Auto(models.Model):
 class Contrato(models.Model):
 	User_alquila=models.ForeignKey("auth.User",null=True,related_name="user_alquila")
 	User_contrata=models.ForeignKey("auth.User",null=True,related_name="user_contrata")
-	hired_status=models.CharField(max_length = 1, choices = HIRED_STATUS, blank = False,
-	null = False, default = HIRED_STATUS[0])
+	auto =models.ForeignKey(Auto,null=True,related_name="auto_contrata")
+	hired_status=models.CharField(max_length = 1, choices = HIRED_STATUS,
+	null = False, default = HIRED_STATUS[0][0])
+	#class Meta:
+	#	unique_together = (('User_alquila', 'User_contrata','auto'),)

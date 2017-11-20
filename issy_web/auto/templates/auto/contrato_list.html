@@ -3,10 +3,71 @@
 {%  block content %}
 
 <div class="container micontenido">
-<h1>mis contratos</h1>
+	<h1>mis contratos</h1>
+	<div class="col-md-12">
+		<div class="btn-group">
+			<a class="btn btn-success" href="{% url 'auto:ofertas_hacia_mi' %}">
+				<span class="glyphicon glyphicon-eye-close"></span><strong>Hacia mi</strong>
+			</a>
+			<a class="btn btn-primary" href="{% url 'auto:ofertas_hacia_otros' %}">
+				<span class="glyphicon glyphicon-eye-open"></span><strong>Hechos a otros</strong>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="table-responsive">
 
-{{contrato_list}}
+			<table class="table table-hover table-striped">
+				<thead>
+					<tr>
+						<th>
+							{% if is_for_me %}
+							Interesado
+							{%else%}
+							Propietario
+							{%endif%}
+						</th>
+						<th>Auto</th>
+						<th>Estado</th>
+						{% if is_for_me %}
+						<th></th>
+						{%endif%}
+					</tr>
+				</thead>
+				<tbody class="table-hover">
+					{% for contrato in contrato_list%}
 
+					<tr>
+						<td>
+							{%if is_for_me%}
+							{{contrato.User_contrata.conductor.nombre}} {{contrato.User_contrata.conductor.apellido}}
+							{%else%}
+							{{contrato.User_alquila.conductor.nombre}} {{contrato.User_alquila.conductor.apellido}}
+							{%endif%}
+						</td>
+						<td>
+							{{contrato.auto}}
+						</td>
+						<td>{{contrato.get_hired_status_display }}
+						</td>
+						
+						{% if is_for_me and contrato.hired_status == "1" %}
+						<td>
+							<a class="btn btn-primary" href="{% url 'auto:aceptar_contrato' pk=contrato.pk %}">Aceptar</a>
+						</td>
+						{%elif contrato.hired_status != "3" %}
+						<td>
+							<a class="btn btn-success" href="{% url 'auto:finalizar_contrato' pk=contrato.pk %}">Finalizar</a>
+						</td>
+						{%endif%}
+
+					</tr>
+
+					{%endfor%}
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
 {% endblock %}
 
