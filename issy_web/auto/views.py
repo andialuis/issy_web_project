@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from django.utils import timezone
 
 from auto.forms import AutoForm
+from conductor.forms import ReviewForm
 
 from django.urls import  reverse_lazy
 from django.contrib.auth.decorators import login_required
@@ -13,6 +14,9 @@ from .models import Auto,Contrato
 from django.contrib.auth import get_user_model
 from django.db import IntegrityError
 from django.db.models import Q
+from conductor.forms import ReviewForm
+from auto.models import Reviews
+from django.core.urlresolvers import reverse
 User = get_user_model()
 # Create your views here.
 
@@ -83,16 +87,39 @@ def AcceptContract(request,pk):
 	dict_res={'contrato_list':mContrato,'is_for_me':False}
 	return render(request,'auto/contrato_list.html',dict_res)
 
+
+'''
 @require_http_methods(["GET"])
 def FinishContract(request,pk):
 	Contrato.objects.filter(pk=pk).update(hired_status='3')
 	mContrato= Contrato.objects.filter(User_contrata=request.user)
 	dict_res={'contrato_list':mContrato,'is_for_me':False}
 	return render(request,'auto/contrato_list.html',dict_res)
+'''
 
+class FinishContract(LoginRequiredMixin,CreateView):
 
+	form_class = ReviewForm
+	model = Reviews
+	template_name="conductor/review_create.html"
 
-
+	def form_valid(self, form):
+		self.object = form.save(commit=False)
+		print (self.kwargs)
+		form.instance.contrato = Contrato.objects.get(pk=self.request.session['contrato_pk'])
+		form.instance.contrato.hired_status='3'
+		form.instance.contrato.save()
+		form.instance.contrato.auto.is_alquiled=False
+		form.instance.contrato.auto.save()
+		self.object.save()
+		return super().form_valid(form)
+	def dispatch(self, request, *args, **kwargs):
+		# parse the request here ie.
+		#self.foo = request.GET.get('foo', False)
+		print (self.kwargs['pk'])
+		request.session['contrato_pk'] = self.kwargs['pk']
+		# call the view
+		return super(FinishContract, self).dispatch(request, *args, **kwargs)
 
 
 
@@ -131,6 +158,7 @@ def AutoContratar(request,owner,auto):
 	print (auto)
 	owner = User.objects.get(username=owner)
 	print (owner)
+	print(auto)
 	Auto_status=Auto.objects.get(is_alquiled=False,user=owner,pk=auto)
 	if Auto_status == None:
 		return HttpResponse('auto already hired')
@@ -138,7 +166,7 @@ def AutoContratar(request,owner,auto):
 	contract = Contrato(User_alquila=owner,User_contrata=request.user,auto=Auto_status)
 	try:
 		contract.save()
-		return HttpResponse(contract)
+		return redirect('auto:contratos')
 	except IntegrityError as e:
 		return HttpResponse('error reference key')
 

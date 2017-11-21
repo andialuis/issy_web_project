@@ -20,7 +20,7 @@ url(r'^contratar/(?P<owner>\w+)/(?P<auto>\w+)$',views.AutoContratar,name="contra
 url(r'^ofertas_hacia_mi/$',views.GetContratosForMe,name="ofertas_hacia_mi"),
 url(r'^ofertas_hacia_otros/$',views.GetContratosToOther,name="ofertas_hacia_otros"),
 url(r'^aceptar_contrato/(?P<pk>\d+)/$',views.AcceptContract,name="aceptar_contrato"),
-url(r'^finalizar_contrato/(?P<pk>\d+)/$',views.FinishContract,name="finalizar_contrato"),
+url(r'^finalizar_contrato/(?P<pk>\d+)/$',views.FinishContract.as_view(),name="finalizar_contrato"),
 
 
 ]

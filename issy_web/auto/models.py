@@ -39,3 +39,11 @@ class Contrato(models.Model):
 	null = False, default = HIRED_STATUS[0][0])
 	#class Meta:
 	#	unique_together = (('User_alquila', 'User_contrata','auto'),)
+
+class Reviews(models.Model):
+	contrato=models.ForeignKey(Contrato,null=True)
+	comment = models.TextField(null=True)
+	rating = models.IntegerField(null=False)
+
+	def get_absolute_url(self):
+		return reverse("auto:contratos")

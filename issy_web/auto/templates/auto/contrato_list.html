@@ -55,9 +55,9 @@
 						<td>
 							<a class="btn btn-primary" href="{% url 'auto:aceptar_contrato' pk=contrato.pk %}">Aceptar</a>
 						</td>
-						{%elif contrato.hired_status != "3" %}
+						{%elif is_for_me and contrato.hired_status != "3" %}
 						<td>
-							<a class="btn btn-success" href="{% url 'auto:finalizar_contrato' pk=contrato.pk %}">Finalizar</a>
+							<a class="btn btn-success" href="{% url 'auto:finalizar_contrato' pk=contrato.pk  %}">Finalizar</a>
 						</td>
 						{%endif%}
 

@@ -9,6 +9,7 @@ from braces.views import SelectRelatedMixin
 from django.views import generic
 from .forms import ConductorForm
 from conductor.models import Conductor
+from auto.models import Reviews
 from auto.models import Auto
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -42,11 +43,12 @@ def info_auto_detalle(request,pk):
 
 def ConductorInfo(request):
 	try:
-		consulta = Conductor.objects.get(user=request.user)
+		conductor = Conductor.objects.get(user=request.user)
+		reviews = Reviews.objects.filter(contrato__User_contrata=request.user)
+		print (reviews)
 	except Conductor.DoesNotExist:
-		consulta =None
-
-	return render(request,'conductor/conductor_info.html',{'conductor':consulta})
+		conductor =None
+	return render(request,'conductor/conductor_info.html',{'conductor':conductor,'reviews':reviews})
 
 
 
@@ -69,7 +71,7 @@ class ConductorProfileCreate(LoginRequiredMixin,CreateView):
 
 	def form_valid(self, form):
 		self.object = form.save(commit=False)
-		self.object.user = self.request.user
+		self.object.user_sender = self.request.user
 		self.object.save()
 		return super().form_valid(form)
 
@@ -78,6 +80,9 @@ class ConductorUpdate(LoginRequiredMixin,UpdateView):
 	form_class = ConductorForm
 	model = Conductor
 	redirect_field_name = "conductor/conductor_info.html"
+
+
+
 
 @login_required
 def alquilar_auto_lista(request):

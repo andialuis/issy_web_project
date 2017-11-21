@@ -24,10 +24,12 @@ class Conductor(models.Model):
 	tipo_licencia = models.CharField(max_length=8,blank=False,null=False)
 	vencimiento_licencia = models.DateField(blank=False,null=False)
 	telefono = models.IntegerField(blank=False,null=False)
-	def __str__(self):
-		return self
+
 
 	def get_absolute_url(self):
 		return reverse("conductor:conductor_info")
+
+
+	
 
 
