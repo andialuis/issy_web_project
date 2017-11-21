@@ -22,7 +22,7 @@ class Auto(models.Model):
 	lugar_recogida= models.CharField(max_length=264)
 	precio= models.FloatField()
 	jornada= models.IntegerField()
-	is_alquiled= models.BooleanField()
+	is_alquiled= models.BooleanField(default=False)
 	def __str__(self):
 		return self.modelo
 
