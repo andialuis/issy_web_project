@@ -5,9 +5,16 @@ from django.contrib.auth.decorators import login_required
 
 #necesario para trabajar con plantillas(CRUD)
 from django.views.generic import (TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView)
-
+from braces.views import SelectRelatedMixin
+from django.views import generic
 from .forms import ConductorForm
-from conductor.models import Auto,Conductor
+from conductor.models import Conductor
+from auto.models import Auto
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
 
 # Create your views here.
 
@@ -20,45 +27,28 @@ class HomeConductor(TemplateView):
 class HomeDuenho(TemplateView):
 	template_name= 'duenho/home_duenho.html'
 
-class InfoAuto(TemplateView):
-	template_name= 'conductor/info_auto.html'
+
 class HistoConductor(TemplateView):
 	template_name= 'conductor/historial_conductor.html'
 
+def info_auto_detalle(request,pk):
 
-def alquilar_auto_lista(request):
-	'''
-	form=forms.NewTopicForm()
-	if request.method=='POST':
-		form = forms.NewTopicForm(request.POST)
-		if form.is_valid():
-			form.save(commit=True)
-			return index(request)
-		else:
-			print("HOrror en form_name_view")
-	return render(request,'first_app/form_page.html',{'form':form})
-	'''
-	print (request.POST)
-	print (request.method)
-
-	Webpage_list = Auto.objects.order_by('precio')
-	date_dict ={'access_records':Webpage_list,'query_ok':"True"}
-	#my_dict={'insert_me':"Hello I am from views.py",'query_ok':True}
-
-	print (Webpage_list)
-	return render(request,'conductor/alquilar_auto.html',context=date_dict)
-
-def info_auto(request,pk):
-	auto = get_object_or_404(Auto,pk=pk)
 	Webpage_list = Auto.objects.get(pk=pk)
+	return render(request,'conductor/info_auto.html',{'info_auto_detalle':Webpage_list})
 
 
-	#print(Webpage_list.precio)
-	#form = CommentForm()
-	return render(request,'conductor/alquilar_auto.html',{'info_auto':Webpage_list})
 
-class ConductorInfo(TemplateView):
-	template_name = 'conductor/conductor_info.html'
+ 
+
+def ConductorInfo(request):
+	try:
+		consulta = Conductor.objects.get(user=request.user)
+	except Conductor.DoesNotExist:
+		consulta =None
+
+	return render(request,'conductor/conductor_info.html',{'conductor':consulta})
+
+
 
 
 class ConductorCreate(CreateView):
@@ -68,6 +58,32 @@ class ConductorCreate(CreateView):
 	success_url = reverse_lazy('home_conductor')
 
 class Index(TemplateView):
-	template_name = 'main.html'
+	template_name = 'index.html'
 
 
+
+class ConductorProfileCreate(LoginRequiredMixin,CreateView):
+	form_class = ConductorForm
+	model = Conductor
+	redirect_field_name = "conductor/conductor_info.html"
+
+	def form_valid(self, form):
+		self.object = form.save(commit=False)
+		self.object.user = self.request.user
+		self.object.save()
+		return super().form_valid(form)
+
+class ConductorUpdate(LoginRequiredMixin,UpdateView):
+
+	form_class = ConductorForm
+	model = Conductor
+	redirect_field_name = "conductor/conductor_info.html"
+
+@login_required
+def alquilar_auto_lista(request):
+
+	Webpage_list = Auto.objects.exclude(user=request.user).filter(is_alquiled=False).order_by('precio')
+	date_dict ={'access_records':Webpage_list,'query_ok':"True"}
+
+	print (Webpage_list)
+	return render(request,'conductor/alquilar_auto.html',context=date_dict)

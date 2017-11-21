@@ -1,8 +1,9 @@
-{% extends "../base.html"%}
+{% extends "base.html"%}
 {% load staticfiles %}
 {% block content %}
 
 <div class="container">
+
 
 	<!-- modelo= models.CharField(max_length=264)
 	plazas= models.CharField(max_length=264)
@@ -20,72 +21,70 @@
 			</div>
 
 			<div class="col-md-4">
-				<h2>Yaris</h2>
+				<h2>{{info_auto_detalle.modelo}}</h2>
 				<div class="row">
 					<div class="col-md-6">
-						<p><strong>plazas: </strong>5</p>	
+						<p><strong>plazas: </strong>{{info_auto_detalle.plazas}}</p>	
 					</div>
 					<div class="col-md-6">
-						<p>Tranmision mecanica</p>
+						<p><strong>Tranmision</strong> {{info_auto_detalle.tipo_transmision}}</p>
 					</div>
 					<div class="col-md-6">
-						<p><strong>Puertas: </strong>4</p>
+						<p><strong>Puertas: </strong>{{info_auto_detalle.puertas}}</p>
 					</div>
 					<div class="col-md-6">
-						<p>Aire acondicionado</p>
+						<p><strong>Aire acondicionado: </strong>{{info_auto_detalle.aire_acondicionado}}</p>
 					</div>
 					<div class="col-md-12">
-						<p>Locacion</p>
-					</div>
-					<div class="col-md-12">
-						<p>Lima-J.Chavez</p>
-					</div>
-					<div class="col-md-12">
-						<p>Aeropuerto internacional</p>
+						<p><strong>Locacion:</strong> {{info_auto_detalle.lugar_recogida}}</p>
 					</div>
 				</div>
 			</div>
 
 			<div class="col-md-4">
-				<h1> Precio por jornada de 12 horas</h1>
-				<h2>S/. 38.99</h2>
-				<button type="submit" class="btn btn-primary center-block btn-lg"> Alquilar </button>
+				<h1> Precio por jornada de {{info_auto_detalle.jornada}} horas</h1>
+				<h2>S/. {{info_auto_detalle.precio}}</h2>
+				<a href="{% url 'auto:contratar' owner=info_auto_detalle.user auto=info_auto_detalle.pk %}" class="btn btn-primary btn-lg">Alquilar</a>
+
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-4">
-				<a href=""><img src="{% static 'img/Marcianito.gif' %}" class="img-circle center-block" style="width:40%"></a>
-				<div class="row" id="rating">
-						<i class="fa fa-star-o" aria-hidden="true"></i>
-						<i class="fa fa-star-o" aria-hidden="true"></i>
-						<i class="fa fa-star-o" aria-hidden="true"></i>
-						<i class="fa fa-star-o" aria-hidden="true"></i>
-						<i class="fa fa-star-o" aria-hidden="true"></i>
+				<div class="col-md-12" >
+					<a href=""><span class=""></span><img src="{% static 'img/icon-male.png' %}" class="img-circle center-block" style="width:40%"></a>
+				</div>
+				<div class="col-md-12" id="rating">
+					
+					<i class="fa fa-star-o" aria-hidden="true"></i>
+					<i class="fa fa-star-o" aria-hidden="true"></i>
+					<i class="fa fa-star-o" aria-hidden="true"></i>
+					<i class="fa fa-star-o" aria-hidden="true"></i>
+					<i class="fa fa-star-o" aria-hidden="true"></i>
 				</div>
 				<div id="reco">
 					Recomendado
 				</div>
 			</div>
 			<div class="col-md-4" id="id_1">
-				<div class="row"><h4>Dueño: Pedro Flores</h4></div>
-				<div class="row"><h4>Numero: 6541315</h4></div>
-				<div class="row"><h4>Correo: cfm@gmail.com</h4></div>
+				<div class="row"><h4>Dueño: {{info_auto_detalle.user.conductor.nombre}} {{info_auto_detalle.user.conductor.apellido}}</h4></div>
+				<div class="row"><h4>Numero: {{info_auto_detalle.user.conductor.telefono}}</h4></div>
+				<div class="row"><h4>Correo: {{info_auto_detalle.user.email}}</h4></div>
 				<div class="row" id=id_2><button type="submit" class="btn btn-primary btn-lg"> Reseñas </button></div>
 			</div>
 			<div class="col-md-4" id="id_3">
 				<UL type= disk>
 					<LI><h3>Incluye</h3>
-					<UL>
-						<LI><h4>Cobertura en caso de robo</h4>
-						<LI><h4>Cobertura por choque</h4>
-						<LI><h4>Tanque lleno</h4>
-					</UL>
-				</UL>
-				<div class="row" id=id_2><button type="submit" class="btn btn-primary btn-lg"> Favoritos </button></div>
-			</div>
-		</div>
-	</section>
-</div>
+						<UL>
+							<LI><h4>Cobertura en caso de robo</h4>
+								<LI><h4>Cobertura por choque</h4>
+									<LI><h4>Tanque lleno</h4>
+									</UL>
+								</UL>
+								<div class="row" id=id_2><button type="submit" class="btn btn-primary btn-lg"> Favoritos </button></div>
+							</div>
+						</div>
+					</section>
+				</div>
 
-{% endblock%}
+				{% endblock%}
 

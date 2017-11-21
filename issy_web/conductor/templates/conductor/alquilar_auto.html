@@ -1,4 +1,4 @@
-{% extends "../main.html"%}
+{% extends "../base.html"%}
 {% load staticfiles %}
 {% block content %}
 
@@ -8,7 +8,7 @@
 		<h1>Alquiler de <i class="fa fa-car" aria-hidden="true"></i>
 		En el Peru</h1>
 
-		<form method="post" action ="{% url 'lista_autos' %}" >
+		<form method="post" action ="{% url 'conductor:buscar_autos' %}" >
 			{% csrf_token %} 
 			<div class="row">
 				<div class="col-md-6">
@@ -69,47 +69,11 @@
 	<section>
 		<h2>Recomendados</h2>
 		{% for acc in access_records %}
-		<div class="row">
-			<div class="col-md-4">
+		{% include "auto/_auto.html"%}
+		{% endfor %}
+	</section>
 
-				<a href="{% url 'info_auto' pk=acc.pk%}"><img src="{% static 'img/car.jpg' %}" class="img-thumbnail"></a>
-				<a href="info_auto"><img src="{% static 'img/car.jpg' %}" class="img-thumbnail"></a>
-
-			</div>
-			<div class="col-md-4">
-				<h2>{{acc.modelo}}</h2>
-				<p><strong>plazas: </strong>{{acc.plazas}}</p>
-				<p><strong>Aire Acondicionado: </strong>{{acc.aire_acondicionado}}</p>
-				<p><strong>Tipo Transmision: </strong>{{acc.tipo_transmision}}</p>
-				<p><strong>Lugar Recogida: </strong>{{acc.lugar_recodiga}}</p>
-			</div>
-			<div class="col-md-4">
-				<h2> Precio por jornada de {{acc.jornada}} horas</h2>
-				<h1>S/.{{acc.precio}}</h1>
-			</div>
-		</div>
-				<div class="row">
-			<div class="col-md-4">
-
-				<a href="{% url 'info_auto' %}"><img src="{% static 'img/car.jpg' %}" class="img-thumbnail"></a>
-
-			</div>
-			<div class="col-md-4">
-				<h2>Yaris</h2>
-				<p><strong>plazas: </strong>{{acc.plazas}}</p>
-				<p><strong>Aire Acondicionado: </strong>{{acc.aire_acondicionado}}</p>
-				<p><strong>Tipo Transmision: </strong>{{acc.tipo_transmision}}</p>
-				<p><strong>Lugar Recogida: </strong>{{acc.lugar_recodiga}}</p>
-			</div>
-			<div class="col-md-4">
-				<h2> Precio por jornada de {{acc.jornada}} horas</h2>
-				<h1>S/.45</h1>
-			</div>
-	</div>
-	{% endfor %}
-</section>
-{% endif %}
+	{% endif %}
 </div>
 
 {% endblock%}
-

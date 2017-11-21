@@ -1,0 +1,39 @@
+{% extends "auto/auto_base.html" %}
+{% load staticfiles%}
+
+{% block auto_content%}
+<h1>LISTA DE AUTOS</h1>
+<div class="col-md-12">
+	<div class="btn-group">
+		<a class="btn btn-success" href="{% url 'auto:auto_crear' %}">
+			<span class="glyphicon glyphicon-pencil"></span><strong>Crear Auto</strong>
+		</a>
+		<a class="btn btn-default" href="{% url 'auto:auto_ofertados' %}">
+			<span class="glyphicon glyphicon-eye-close"></span><strong>Autos Sin ofertar</strong>
+		</a>
+		<a class="btn btn-warning" href="{% url 'auto:auto_sin_ofertar' %}">
+			<span class="glyphicon glyphicon-eye-open"></span><strong>Autos Ofertados</strong>
+		</a>
+		<a class="btn btn-success" href="{% url 'auto:auto_list' %}">
+			<span class="glyphicon glyphicon-th-list"></span><strong>Toda la lista</strong>
+		</a>
+	</div>
+</div>
+{% for acc in auto_list %}
+<div class="col-md-12">
+	<a class="btn btn-primary pull-right" href="{% url 'auto:auto_edit' pk=acc.pk %}">
+		<span class="glyphicon glyphicon-pencil"></span><strong>editar</strong>
+	</a>
+	<a class="btn btn-warning pull-right" href="{% url 'auto:auto_remove' pk=acc.pk %}">
+		<span class="glyphicon glyphicon-remove"></span><strong>Eliminar</strong>
+	</a>
+	{% if acc.is_alquiled == False%}
+	<a class="btn btn-info pull-right" href="{% url 'auto:auto_ofertar' pk=acc.pk %}">
+		<span class="glyphicon glyphicon-remove"></span><strong>Ofertar</strong>
+	</a>
+	{%endif%}
+</div>
+{% include "auto/_auto.html"%}
+{%endfor%}
+
+{% endblock %}

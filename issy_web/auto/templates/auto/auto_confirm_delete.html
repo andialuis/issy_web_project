@@ -1,0 +1,17 @@
+{% extends "auto/auto_base.html" %}
+
+
+{% block auto_content %}
+<h1><strong>¿estas seguro que quieres borrar este auto?</strong></h1>
+
+<div class="posts">
+	{% include "auto/_auto.html" with acc=object hide_delete=True %}
+</div>
+
+<form method="POST">
+	{% csrf_token %}
+	<input type="submit" value="Confirm Delete" class="btn btn-danger btn-large">
+	<a href="{% url 'auto:auto_list' %}" class="btn btn-simple btn-large btn-default">Cancel</a>
+</form>
+
+{% endblock %}
