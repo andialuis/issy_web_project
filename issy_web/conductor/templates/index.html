@@ -9,13 +9,13 @@
 			<div class="row">
 				<div class="col-md-6">
 					<h1>Captura un <span class="em-text">Conductor</span></h1>
-					<p>A fun and easy way to capture & share the moments of your life</p>
-					<a href="#"><img class="app-btn" src="{% static 'img/icon_app_store.png' %}"></a>
-					<a href="#"><img class="app-btn" src="{% static 'img/icon_google_play.png' %}"></a>
+					<p>Una forma rápida y sencilla de buscar autos y conductores - Izi carro Izi life</p>
+					<a href="{% url 'conductor:alquilar_auto' %}" ><img class="app-btn img-rounded"  id="botoncarro" src="{% static 'img/drivericon2.jpg' %}"></a>
+					<a href="{% url 'conductor:alquilar_auto' %}"><img class="app-btn img-rounded" id="botoncarro" src="{% static 'img/drivericon.jpg' %}"></a>
 				</div>
 				<div class="col-md-6">
 			
-					<img src="{% static 'img/site_phone.png' %}" class="showcase-img">
+					<img src="{% static 'img/site_phone2.png' %}" class="showcase-img">
 				</div>
 			</div>
 		</div>
@@ -24,42 +24,27 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
-					<img src="{% static 'img/demo1.jpg' %}" class="demo">
-					<h2>Lorem Ipsum</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<img src="{% static 'img/carpublicidad.png' %}" class="demo">
+					<h2>Seguro de autos</h2>
+					<p>Encuentra en segundos el seguro vehicular que necesitas. Te asesoramos antes y después de la contratación de tu seguro para que compares todas las opciones del mercado y ahorres hasta 35%.</p>
 					<a href="#" class="btn btn-default">
 						Read more..
 					</a>
 
 				</div>
 				<div class="col-md-4">
-					<img src="{% static 'img/demo2.jpg' %}" class="demo">
-					<h2>Lorem Ipsum</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<img src="{% static 'img/carpublicidad.jpg' %}" class="demo">
+					<h2>¿Quieres cambiar de auto?</h2>
+					<p>Si decides cambiar tu coche a través de particulares, corres el riesgo de que la venta de tu coche se haga por otro precio al deseado y que se demore más de lo que piensas. Si prefieres profesionales, lo harás más rápido pero asegúrate de que te dan el precio real de tu coche en el mercado y, sobre todo, evita pagar los costes de tasación de tu vehículo y confirma antes que no te exigen compromiso de venta.La forma más rápida y fiable de vender tu automóvil es en compramostucoche.es. Sin anuncios, sin regateos, sin costes, sin compromiso y sin trámites como el cambio de titularidad. Tasa ahora tu coche online de forma gratuita y conoce el valor aproximado del mismo en cinco minutos.</p>
 					<a href="#" class="btn btn-default">
 						Read more
 					</a>
 
 				</div>
 				<div class="col-md-4">
-					<img src="{% static 'img/demo3.jpg' %}" class="demo">
-					<h2>Lorem Ipsum</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<img src="{% static 'img/carpublicidad2.jpg' %}" class="demo">
+					<h2>Consigue autos nuevos</h2>
+					<p>Ingresa a nuestro catálogo de autos nuevos y adquirí el auto que tanto soñaste! Precios, ofertas, cotizaciones y planes de financiación en Perú. Todos los autos nuevos disponibles en el mercado. Encuentra la información más completa de equipamiento, colores, precios, datos técnicos y fotos de todos los autos.</p>
 					<a href="#" class="btn btn-default">
 						Read more
 					</a>
@@ -72,21 +57,19 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-5">
-					<h1>Gamma Features</h1>
+					<h1>Ventajas de Issy Car</h1>
 					<ul>
-						<li><i class="glyphicon glyphicon-ok"></i>cillum dolore </li>
-						<li><i class="glyphicon glyphicon-ok"></i>quis nostrud exercitation </li>
-						<li><i class="glyphicon glyphicon-ok"></i>incididunt ut labore et </li>
-						<li><i class="glyphicon glyphicon-ok"></i>dolore magna</li>
+						<li><i class="glyphicon glyphicon-ok"></i>Intuitivo </li>
+						<li><i class="glyphicon glyphicon-ok"></i>Rápido </li>
+						<li><i class="glyphicon glyphicon-ok"></i>Seguro </li>
+						<li><i class="glyphicon glyphicon-ok"></i>Confiable</li>
 					</ul>
 				</div>
 				<div class="col-md-4 col-md-offset-2">
-					<img src="{% static 'img/logo.png' %}" class="big-logo">
-					
+					<img src="{% static 'img/logo2.png' %}" class="big-logo">		
 				</div>
 			</div>
 		</div>
 	</section>
-
 
 {% endblock%}
