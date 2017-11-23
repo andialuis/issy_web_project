@@ -1,0 +1,20 @@
+{% load staticfiles %}
+
+<div class="row">
+	
+			<div class="col-md-4">
+				<a href="{% url 'conductor:info_auto_detalle' pk=acc.pk%}"><img src="{% static 'img/car.jpg' %}" class="img-thumbnail"></a>
+				
+			</div>
+			<div class="col-md-4">
+				<h2>{{acc.modelo}}</h2>
+				<p><strong>plazas: </strong>{{acc.plazas}}</p>
+				<p><strong>Aire Acondicionado: </strong>{{acc.aire_acondicionado}}</p>
+				<p><strong>Tipo Transmision: </strong>{{acc.tipo_transmision}}</p>
+				<p><strong>Lugar Recogida: </strong>{{acc.lugar_recodiga}}</p>
+			</div>
+			<div class="col-md-4">
+				<h2> Precio por jornada de {{acc.jornada}} horas</h2>
+				<h1>S/.{{acc.precio}}</h1>
+			</div>
+	</div>

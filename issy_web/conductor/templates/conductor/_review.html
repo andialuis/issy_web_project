@@ -1,0 +1,15 @@
+{% load staticfiles%}
+
+    <div class="row">
+        <div class="col-md-1">
+            <img src="{% static 'img/icon-male.png' %}" class="img-thumbnail">
+        </div>
+        <div class="col-md-11">
+            <h3>{{review.contrato.User_alquila.conductor.nombre}} {{review.contrato.User_alquila.conductor.apellido}}</h3>
+            {% for x in ""|ljust:review.rating %}
+
+            <span class="fa fa-star checked"></span>
+            {%endfor%}
+            <p>{{review.comment}}</p>
+        </div>
+    </div>

@@ -1,0 +1,72 @@
+{% extends "../base.html"%}
+{% load staticfiles %}
+{% block content %}
+<section class="conductor-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <img src="{% static 'img/icon-male.png' %}" class="img-thumbnail">
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    {% if user.is_authenticated %}
+                    {% if conductor %}
+                    <a class="btn btn-primary" href="{% url 'conductor:perfil_edit' pk=user.conductor.id %}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    {% else%}
+                    <a class="btn btn-success" href="{% url 'conductor:perfil_crear' %}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    {%endif%}
+                    {% endif%}
+                </div>
+                <div class = "row">
+                    <h1>{{conductor.nombre}} {{conductor.apellido}}</h1>
+
+                </div>
+                <div class = "row">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                </div>
+                <hr>
+
+                <div class = "row">
+                    <div class="col-md-4">
+                      <p><strong>Edad:</strong>{{conductor.edad}}</p>
+                  </div>
+                  <div class="col-md-4">
+                      <p><strong>Estado civil:</strong>{{conductor.estado_civil}}</p>
+                  </div>
+                  <div class="col-md-4">
+                      <p><strong>Ciudad:</strong>{{conductor.ciudad}}</p>
+                  </div>
+
+
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h2>Experiencia</h2>
+            <p><strong>Inicio en la app:</strong>{{conductor.inicio_app}}</p>
+            <p><strong>Número de viajes:</strong>{{conductor.total_viajes}}</p>
+        </div>
+        <div class="cold-md-6">
+            <h2>Licencia</h2>
+            <p><strong>Tipo:</strong>{{conductor.tipo_licencia}}</p>
+            <p><strong>Fecha de vencimiento:</strong>{{conductor.vencimiento_licencia}}</p>
+        </div>
+    </div>
+    <hr>
+    <h1> Reseñas</h1>
+
+{%for review in reviews %}
+{% include "conductor/_review.html"%}
+{%endfor%}
+
+   
+
+</section>
+{% endblock %}

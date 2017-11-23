@@ -1,0 +1,32 @@
+#contain{
+	border: 5px solid powderblue;
+}
+.checked {
+    color: orange;
+}
+
+#id_1{
+	padding-top: 40px;
+
+}
+#id_2{
+	padding-top: 60px;
+
+}
+#id_3{
+	padding-top: 20px;
+	padding-left: 0px;
+}
+#info_a{
+	border: 1px solid powderblue;
+	padding: 10px;
+}
+#rating{
+	text-align: center;
+
+}
+#reco{
+	padding-left: 130px;
+
+}
+

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+
+<div class="container"> 
+	<h4>comentario al usuario</h4>
+
+		<form method="POST" action="" id="postForm">
+			{% csrf_token %}
+			{% bootstrap_form form %}
+			<input type="submit" value="Post" class="btn btn-primary btn-large">
+		</form>
+	
+</div>
+{% endblock %}

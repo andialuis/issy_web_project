@@ -1,0 +1,21 @@
+
+{% extends "../base.html"%}
+{% load bootstrap3 %}
+{% block content %}
+
+
+<div class="container">
+	<h1>Modificando usuario: {{user.username}}</h1>
+	<form class="post-form" method="POST">
+		{%  csrf_token %}
+		{% bootstrap_form form %}
+		<button type="submit" class="save btn btn-default">Save</button>
+	</form>
+
+</div>
+
+<script type="text/javascript">
+	var editor = new MediumEditor(".editable");
+</script>
+{% endblock%}
+
